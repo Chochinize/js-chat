@@ -28,7 +28,7 @@ avatar(){
 }
 createpost(){
     this.post.addEventListener('click',(e)=>{
-            
+          
             let ID =  ()=>{
 
                 return '_' + Math.random().toString(36).substr(2, 9)
@@ -72,13 +72,18 @@ createpost(){
             // ###########################################################################################
             const txt5 = document.createElement('p');
             txt5.addEventListener('click', (e)=>{
-                
                     const create = document.createElement('div');
-                    create.classList = 'block bg-gray-100 w-5/6 m-auto mt-14 max-h-max border-2 border-dotted mt-4 font-indie text-xl hover:bg-gray-200 break-all z-3 '
+                    create.classList = 'block bg-gray-100 w-5/6 m-auto mt-14 max-h-max border-2 border-dotted mt-20 font-indie text-xl hover:bg-gray-300 break-all z-3 '
+                    // const commentOut = document.createElement('p');
+                    // commentOut.classList = 'bg-white p-4 border-2 rounded-3xl'
+                    // commentOut.innerText = ''
+                    
+                    // count the liuke
+                    
                     
                     // time and date && name
                     const grid = document.createElement('div');
-                    grid.classList = 'grid grid-cols-10  border-2  m-auto'
+                    grid.classList = 'grid grid-cols-10  border-b-2  m-auto'
                     const mostLeft = grid.appendChild(document.createElement('img'))
                     
                     mostLeft.classList = 'col-start-0 col-end-1 inline-block h-4 w-4 rounded-full ring-2 ring-white'
@@ -87,7 +92,7 @@ createpost(){
                     left.setAttribute('href','http://www.google.com')
                     left.setAttribute('target','_blank')
                     left.classList = 'col-start-1 col-end-4 text-xs list-none hover:underline '
-                    left.innerText = `${this.user.name} said:...`
+                    left.innerText = `${this.user.name} posted:...`
                     const left2 = grid.appendChild(document.createElement('li'))
                     left2.classList = 'col-start-4 col-end-8 text-xs list-none'
                     left2.innerText = ` ${new Date().toLocaleString()}`
@@ -95,7 +100,7 @@ createpost(){
                     right.classList = 'col-start-11 col-end-11  list-none text-xs hover:bg-gray-100 cursor-default'
                     right.innerText = 'X'
                     right.addEventListener('click',()=>{
-                        
+                        // e.currentTarget.remove()
                         console.log(document.body.children[2].children[0].remove());
                     })
                     // info
@@ -108,17 +113,36 @@ createpost(){
                     
                     //manage
                     const voteBar = document.createElement('div');
+                    const commentOut = document.createElement('p');
                     const msg = document.createElement('input');
+                    msg.classList= 'relative top-16 float-right h-8 bg-gray-200  outline-none  text-xs ' 
+                    
+                    msg.setAttribute('placeholder','comment....');
+                    // msg.setAttribute('submit','dasdas')
+                    msg.addEventListener("keyup", function(event) {
+                        if (event.keyCode === 13) {
+                            
+                            const insideComment = document.createElement('p');
+                            insideComment.classList = 'border-2 text-xs my-4'
+                            insideComment.innerText = this.name +  msg.value
+                            commentOut.appendChild(insideComment);
+                            commentOut.classList = 'bg-white p-4 border-2 mt-10 rounded-3xl'
+                        }
+                    });
+                    // comment
+                    
+                    // commentOut.innerText = 'dasdasd';
+
+
+                    voteBar.classList = 'grid grid-cols-2 border-2 max-w-max relative top-6 bg-blue-200 z-2 mix-blend-soft-light'     
                     const like = document.createElement('a');
                     const dislike = document.createElement('a');
                     // const edit = document.createElement('li');
-                    voteBar.classList = 'grid grid-cols-2  border-2 max-w-max relative top-12 bg-blue-200 z-2 mix-blend-soft-light' 
                     
-                    
-                    // positive and negative count
+                    // positive and negative count  + LIKE 
                     const positiveCounter = [] 
                     const negativeCounter =  []
-                    like.classList = 'col-start-1 col-end-2 border-2 max-w-max list-none m-2  z-10 '
+                    like.classList = 'col-start-1 col-end-2 border-2 max-w-max list-none   text-xs z-10 '
                     like.innerText = 'like'
                     like.addEventListener('click',(e)=>{
                         
@@ -134,7 +158,7 @@ createpost(){
                             console.log(positiveCounter);
                         }
                     })
-                    dislike.classList = 'col-start-2 col-end-3 border-2 max-w-max list-none m-2 '
+                    dislike.classList = 'col-start-2 col-end-2 border-2 max-w-max list-none text-xs '
                     dislike.innerText = 'dis'
                     dislike.addEventListener('click',()=>{
                         if(dislike && negativeCounter == 0){
@@ -153,6 +177,7 @@ createpost(){
                     // del
                     
                     // 
+                    
                     voteBar.appendChild(like)
                     voteBar.appendChild(dislike)
                     
@@ -168,17 +193,19 @@ createpost(){
                     console.log(document.body);
                     
                     
-                    
+                    create.append(commentOut);
+                    create.appendChild(msg)
                     create.appendChild(voteBar)
                     create.prepend(grid);
                     this.out.append(create) 
                     this.user.observer.pop();
+                    
                 },{once:true})
                 
                 
                 // this.main.classList = 'border
                 txt1.classList = 'col-start-4 col-span-4'
-                txt2.classList = 'col-start-1 col-span-7   h-52 outline-none'
+                txt2.classList = 'col-start-1 col-span-7   h-52 outline-none border-b-2 border-t-2'
                 txt3.classList = 'col-start-2 col-span-4 cursor-pointer'
                 txt4.classList = 'col-end-8 col-span-1 '
                 txt5.classList = 'col-start-3 col-span-3 border-2  text-center mb-2 hover:bg-gray-100'
