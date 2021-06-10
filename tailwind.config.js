@@ -7,10 +7,12 @@ module.exports = {
       colors:{
         primary: 'black'
       },
+      fontSize: {
+        xss:['0.60rem','0.80rem']
+      },
       fontFamily: {
         ani: ['Annie Use Your Telescope','cursive',],
         indie: ['Indie Flower','cursive',]
-        
       }
     },
   },

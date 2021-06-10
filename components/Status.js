@@ -1,3 +1,5 @@
+
+
 export default class Status{
     constructor(name,status,text,element){
         this.userName = name;
@@ -20,19 +22,77 @@ export default class Status{
         }
     }
 
-avatar(element,clAss,elapp){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+avatar(element,clAss,elapp,ht){
     const el = document.createElement(element);
     el.classList = clAss 
+    el.innerHTML = ht
     elapp.appendChild(el);
+    // 
+    // 
+    //
+
     return this;    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 createpost(){
+     
+        // console.log();
+
     
-
-
-    
-
+     
+  
         this.post.addEventListener('click',(e)=>{    
+            e.target.parentElement.classList.add('hidden')
             let ID =  ()=>{
                 
                 return '_' + Math.random().toString(36).substr(2, 9)
@@ -45,7 +105,7 @@ createpost(){
             
             
             const post = document.createElement('div');
-            post.classList = 'grid grid-cols-7 m-2 border-4 w-3/4 m-auto mt-10'
+            post.classList = 'grid grid-cols-7 m-2 border-4 w-3/4 m-auto mt-10 '
             const txt1 = document.createElement('p');
             const txt2 = document.createElement('textarea');
         
@@ -56,7 +116,9 @@ createpost(){
             img.src = './img/nm.png'
             inp.setAttribute('type','file')
             inp.setAttribute('style','display:none')
-            
+            inp.addEventListener('change',()=>{
+                
+            })
             // txt3.width = 30
             
             txt3.addEventListener('load', (event)=>{
@@ -74,36 +136,65 @@ createpost(){
             })
             
             
-            // ###########################################################################################
+            // ###########################################################################################txt 5 is post button
             const txt5 = document.createElement('p');
             txt5.addEventListener('click', (e)=>{
+                // e.target.parentElement.classList.remove('hidden')
+                document.body.children[0].classList.remove('hidden')
+                
                 const create = document.createElement('div');
                 create.classList = 'block bg-gray-100 w-5/6 m-auto  max-h-max border-2 border-dotted  mt-20 font-indie text-xl hover:bg-gray-300 break-all z-3 '
-             
+                
                 
                 
                 // time and date && name
                 const grid = document.createElement('div');
-                grid.classList = 'grid grid-cols-10  border-b-2  m-auto'
+                grid.classList = 'grid grid-cols-12  border-b-2  m-auto'
                 const mostLeft = grid.appendChild(document.createElement('img'))
+                
+                
                 
                 mostLeft.classList = 'col-start-0 col-end-1 inline-block h-4 w-4 rounded-full ring-2 ring-white'
                 mostLeft.src = this.user.img.avatar[0]
                 const left = grid.appendChild(document.createElement('a'))
                 left.setAttribute('href','http://www.google.com')
                 left.setAttribute('target','_blank')
-                left.classList = 'col-start-1 col-end-4 text-xs list-none hover:underline '
+                left.classList = 'col-start-1 col-end-3 text-xs list-none hover:underline '
                 left.innerText = ` ${this.user.name}`
                 const left2 = grid.appendChild(document.createElement('li'))
-                left2.classList = 'col-start-4 col-end-8 text-xs list-none'
-                left2.innerText = ` ${new Date().toLocaleString()}`
+                
+                left2.classList = 'col-start-3 col-end-7 text-xss list-none  font-bold underline'
+                left2.innerText = `${new Date().toLocaleString()}`
+
+
+               
+                const mid = document.createElement('details');
+                const summary = mid.appendChild(document.createElement('summary'));
+                const li = mid.appendChild(document.createElement('li'));
+                const a = mid.appendChild(document.createElement('a'))
+                a.setAttribute('href','index.html')
+                li.classList = 'absolute w-10 h-10 bg-gray-100  '
+                li.innerText = 'dasda'
+             
+                li.appendChild(a);
+                mid.classList = 'col-start-7 col-end-9 text-xss text-black '
+                summary.innerText = 'info'
+                
+                    
+                
+                grid.appendChild(mid)
+                    
+
+                
+                
                 const right  = grid.appendChild(document.createElement('li'))
-                right.classList = 'col-start-11 col-end-11  list-none text-xs hover:bg-gray-100 cursor-default'
+                right.classList = 'col-start-13 col-end-13  list-none text-xs hover:bg-gray-100 cursor-default'
                 right.innerText = 'X'
                 right.addEventListener('click',(e)=>{
                     e.target.parentElement.parentElement.remove();
                 
                 })
+
                 // info
                 // const info = document.createElement('div');
                 // info.classList = 'text-xs relative border-b max-w-max border-black'
@@ -129,7 +220,7 @@ createpost(){
                         commImg.src =  mostLeft.src;
                         insideComment.classList = 'border-2 text-xs my-4 relative rounded-tr-full rounded-br-full rounded-bl-full ml-8  p-4 bg-white '
                         insideComment.innerHTML =  `${left.innerText} commented: ${msg.value}`
-                        insideComment.innerText = left2.innerText;
+                        // insideComment.innerText = left2.innerText + 'said...';
 
                         commentOut.appendChild(commImg);
                         commentOut.appendChild(insideComment);
@@ -186,6 +277,8 @@ createpost(){
                 
                 // 
                 
+             
+                
                 voteBar.appendChild(like)
                 voteBar.appendChild(dislike)
                 
@@ -208,7 +301,7 @@ createpost(){
                 this.out.append(create) 
                 this.user.observer.pop();
                 
-            },{once:true})
+            })
             
             
             // this.main.classList = 'border
@@ -217,17 +310,25 @@ createpost(){
             txt3.classList = 'col-start-2 col-span-4 cursor-pointer p-2'
             txt4.classList = 'col-end-8 col-span-1 '
             txt5.classList = 'col-start-3 col-span-3 border-2  text-center mb-2 hover:bg-gray-100'
-            
+            console.log(txt5);
+            if(txt2.textLength == 0){
+                txt5.classList.toggle('cursor-not-allowed')   
+                txt5.setAttribute('disabled','disabled')
+            }else {
+                txt5.classList.remove('cursor-not-allowed')
+            }
             
             txt1.textContent = `Hello ${this.user.name}`
             
             // txt2.textContent = 'CLASSdsadaS'
             txt2.setAttribute('placeholder','tell the world , what are you doing ...');
-            
+            // txt2.innerText = 'ddeqweqwd'
+
+           
             txt4.textContent = 'emoji'
             txt5.textContent = 'POST'
             
-            post.appendChild(txt1);
+                post.appendChild(txt1);
                 post.appendChild(txt2);
                 post.appendChild(txt3);
                 post.appendChild(txt4);
@@ -236,13 +337,15 @@ createpost(){
                 if(this.main.appendChild(post)){
                     // document.body.children[1].children[3].remove();
                 };
-            },false);
+            });
+            
             
         
         
         
         
     }
+    
 }
     
     
