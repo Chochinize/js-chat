@@ -312,7 +312,7 @@ createpost(){
             txt5.classList = 'col-start-3 col-span-3 border-2  text-center mb-2 hover:bg-gray-100'
             console.log(txt5);
             if(txt2.textLength == 0){
-                txt5.classList.toggle('cursor-not-allowed')   
+                // txt5.classList.toggle('cursor-not-allowed')   
                 txt5.setAttribute('disabled','disabled')
             }else {
                 txt5.classList.remove('cursor-not-allowed')
