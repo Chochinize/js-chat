@@ -1,1 +1,1 @@
-# js-chat
+# publishing page with comments
